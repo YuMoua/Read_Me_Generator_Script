@@ -1,5 +1,4 @@
 const inquirer = require("inquirer");
-
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const path = require('path');
@@ -59,7 +58,7 @@ const questions = [
 
 function writeReadMe(data, filename = 'README.md') {
     const markdownContent = generateMarkdown(data);
-    fs.writeFile(path.join(process.cwd(), filename), markdownContent,'utf8', function(err) {
+    fs.writeFile(filename, markdownContent,'utf8', function(err) {
         if (err) {
             console.log('An error occured while writing README to File.');
             return console.log(err);
@@ -75,7 +74,8 @@ function writeReadMe(data, filename = 'README.md') {
         inquirer.prompt(questions)
             .then((answers) => {
                 writeReadMe(answers)
-            })
+            });
+
     }
 
 
